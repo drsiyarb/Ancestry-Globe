@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": "population",
+      "label": "Population context",
+      "type": "population",
+      "open": true,
+      "items": [
+        { "id": "Yamnaya", "label": "Yamnaya" },
+        { "id": "Corded_Ware", "label": "Corded Ware" },
+        { "id": "Bell_Beaker", "label": "Bell Beaker" },
+        { "id": "Anatolia_N", "label": "Anatolia Neolithic" },
+        { "id": "WHG", "label": "Western Hunter-Gatherer" },
+        { "id": "CHG", "label": "Caucasus Hunter-Gatherer" }
+      ]
+    },
+    {
+      "id": "ydna",
+      "label": "Y-DNA lineages",
+      "type": "ydna_major",
+      "open": true,
+      "items": [
+        { "id": "R1b", "label": "R1b" },
+        { "id": "R1a", "label": "R1a" },
+        { "id": "J2", "label": "J2" },
+        { "id": "G2", "label": "G2" },
+        { "id": "I2", "label": "I2" },
+        { "id": "E1b", "label": "E1b" }
+      ]
+    },
+    {
+      "id": "mtdna",
+      "label": "mtDNA lineages",
+      "type": "mtdna_major",
+      "open": false,
+      "items": [
+        { "id": "H", "label": "H" },
+        { "id": "U", "label": "U" },
+        { "id": "K", "label": "K" },
+        { "id": "T", "label": "T" },
+        { "id": "J", "label": "J" },
+        { "id": "N", "label": "N" }
+      ]
+    }
+  ]
+}
