@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Ancestry Globe — watch genes & lineages move across humanity</title>
+<meta name="description" content="Watch real ancient-DNA gene variants and Y-DNA / mtDNA lineages spread across the world over 15,000 years. Built on the Allen Ancient DNA Resource v66." />
+<link rel="stylesheet" href="style.css" />
+<meta property="og:title" content="Ancestry Globe — watch genes & lineages move across humanity" />
+<meta property="og:description" content="Watch real ancient-DNA traits and Y-DNA / mtDNA lineages spread across the world over 15,000 years. Built on the Allen Ancient DNA Resource." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<script src="https://unpkg.com/globe.gl@2.32.0/dist/globe.gl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+</head>
+<body>
+<div id="globe"></div>
+
+<header id="topbar">
+  <div class="brand">Ancestry<span>Globe</span></div>
+  <div class="tagline">watch genes & lineages move across humanity</div>
+</header>
+
+<section id="panel">
+  <label class="lbl">Layer</label>
+  <select id="layerSel" class="sel">
+    <option value="genes">Genes / traits</option>
+    <option value="ydna">Y-DNA · paternal line</option>
+    <option value="mtdna">mtDNA · maternal line</option>
+  </select>
+
+  <div id="geneControls">
+    <label class="lbl">Gene / trait</label>
+    <select id="geneSelect" class="sel"></select>
+    <label class="lbl">Search any SNP</label>
+    <div class="searchrow">
+      <input id="snpInput" placeholder="e.g. rs1042522" />
+      <button id="snpBtn">Map</button>
+    </div>
+    <p id="snpMsg" class="hint"></p>
+  </div>
+
+  <div id="hapControls" style="display:none">
+    <label class="lbl">Haplogroup</label>
+    <select id="cladeSelect" class="sel"></select>
+    <label class="lbl">Trace your line</label>
+    <div class="searchrow">
+      <input id="hapInput" placeholder="your haplogroup, e.g. R1b" />
+      <button id="hapBtn">Trace</button>
+    </div>
+    <p id="hapMsg" class="hint"></p>
+  </div>
+
+  <p id="blurb" class="blurb"></p>
+
+  <div class="freqRow">
+    <div class="freqBox"><span id="freqVal">—</span><small id="freqLbl">carrier freq<br>in window</small></div>
+    <div class="freqBox"><span id="nVal">—</span><small>samples<br>in window</small></div>
+  </div>
+
+  <label class="lbl">Frequency over time <span id="trajHint" class="hint"></span></label>
+  <canvas id="trajChart" width="252" height="74"></canvas>
+
+  <label class="lbl">View</label>
+  <select id="viewSel" class="sel">
+    <option value="freq">Frequency · hex</option>
+    <option value="density">Density · hex</option>
+    <option value="smooth">Smooth · KDE</option>
+    <option value="dots">Individual dots</option>
+  </select>
+
+  <div class="ctrl" id="hexRow">
+    <label>Hex size · <b id="hexVal">large</b></label>
+    <input id="hexSlider" type="range" min="0" max="4" value="2" />
+  </div>
+  <div class="ctrl">
+    <label>Time window · <b id="winVal">±750y</b></label>
+    <input id="winSlider" type="range" min="250" max="4000" step="250" value="750" />
+  </div>
+  <div class="chiprow">
+    <button id="rotBtn" class="chip" data-on="true">Auto-rotate: on</button>
+    <button id="heightBtn" class="chip" data-on="false">3D height: off</button>
+  </div>
+  <button id="scaleBtn" class="chip wide active" data-on="true">Auto-scale colour: on</button>
+  <p id="scaleMsg" class="hint" style="margin-top:8px"></p>
+
+  <div id="legend" class="legend"></div>
+
+  <label class="lbl">Share</label>
+  <div class="chiprow">
+    <button id="pngBtn" class="chip">📸 Snapshot</button>
+    <button id="gifBtn" class="chip">🎬 Export GIF</button>
+  </div>
+  <p id="shareMsg" class="hint"></p>
+</section>
+
+<footer id="timebar">
+  <button id="backBtn" class="step" title="step back one epoch">⏴</button>
+  <button id="playBtn" aria-label="play">▶</button>
+  <button id="fwdBtn" class="step" title="step forward one epoch">⏵</button>
+  <div class="slider-wrap">
+    <input id="timeSlider" type="range" min="0" max="100" value="100" />
+    <div class="time-readout"><span id="timeLabel">today</span></div>
+  </div>
+  <div class="pace" title="playback pace">
+    <span class="pace-ic">🐢</span>
+    <input id="paceSlider" type="range" min="1" max="12" value="5" />
+    <span class="pace-ic">🐇</span>
+  </div>
+</footer>
+
+<div id="note">Each point is one real ancient or present-day individual from the Allen Ancient DNA Resource (v66). Not a migration path — a snapshot of who carried a variant or lineage, when and where.</div>
+
+<div id="loading">loading ancient genomes…</div>
+
+<script src="main.js"></script>
+</body>
+</html>

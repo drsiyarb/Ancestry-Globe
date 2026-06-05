@@ -1,0 +1,14 @@
+# raw AADR data (huge — never commit)
+data/
+*.geno
+*.snp
+*.anno
+*.ind
+*.full
+# python
+__pycache__/
+*.pyc
+# os / editor
+.DS_Store
+Thumbs.db
+.claude/
